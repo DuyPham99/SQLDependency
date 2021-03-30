@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
@@ -165,6 +166,9 @@
             // lUONGDataGridViewTextBoxColumn
             // 
             this.lUONGDataGridViewTextBoxColumn.DataPropertyName = "LUONG";
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.lUONGDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.lUONGDataGridViewTextBoxColumn.HeaderText = "LUONG";
             this.lUONGDataGridViewTextBoxColumn.Name = "lUONGDataGridViewTextBoxColumn";
             // 
