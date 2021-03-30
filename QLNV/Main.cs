@@ -101,7 +101,7 @@ namespace QLNV
                 con.Open();
             }
 
-            SqlCommand cmd = new SqlCommand("SELECT  MANV, HO, TEN, PHAI, DIACHI, NGAYSINH, LUONG, MACN, TRANGTHAI FROM[dbo].[NHANVIEN]", con);
+            SqlCommand cmd = new SqlCommand("SELECT  MANV, HO, TEN, PHAI, DIACHI, NGAYSINH, LUONG, MACN, TRANGTHAI FROM[dbo].[NHANVIEN] WHERE TRANGTHAI = 'False'", con);
             cmd.Notification = null;
 
             SqlDependency de = new SqlDependency(cmd);
@@ -111,6 +111,43 @@ namespace QLNV
             dataGridView.DataSource = dt;
         }
 
+        private void fillByToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.nHANVIENTableAdapter.FillBy(this.qLNVDataSet.NHANVIEN);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
 
+        }
+
+        private void fillByToolStripButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.nHANVIENTableAdapter.FillBy(this.qLNVDataSet.NHANVIEN);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillByToolStripButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                this.nHANVIENTableAdapter.FillBy(this.qLNVDataSet.NHANVIEN);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

@@ -92,18 +92,21 @@
             this.mANVDataGridViewTextBoxColumn.DataPropertyName = "MANV";
             this.mANVDataGridViewTextBoxColumn.HeaderText = "Mã NV";
             this.mANVDataGridViewTextBoxColumn.Name = "mANVDataGridViewTextBoxColumn";
+            this.mANVDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // hODataGridViewTextBoxColumn
             // 
             this.hODataGridViewTextBoxColumn.DataPropertyName = "HO";
             this.hODataGridViewTextBoxColumn.HeaderText = "Họ";
             this.hODataGridViewTextBoxColumn.Name = "hODataGridViewTextBoxColumn";
+            this.hODataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tENDataGridViewTextBoxColumn
             // 
             this.tENDataGridViewTextBoxColumn.DataPropertyName = "TEN";
             this.tENDataGridViewTextBoxColumn.HeaderText = "Tên";
             this.tENDataGridViewTextBoxColumn.Name = "tENDataGridViewTextBoxColumn";
+            this.tENDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // pHAIDataGridViewCheckBoxColumn
             // 
@@ -111,6 +114,7 @@
             this.pHAIDataGridViewCheckBoxColumn.DataPropertyName = "PHAI";
             this.pHAIDataGridViewCheckBoxColumn.HeaderText = "Phái";
             this.pHAIDataGridViewCheckBoxColumn.Name = "pHAIDataGridViewCheckBoxColumn";
+            this.pHAIDataGridViewCheckBoxColumn.ReadOnly = true;
             this.pHAIDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.pHAIDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -119,24 +123,28 @@
             this.dIACHIDataGridViewTextBoxColumn.DataPropertyName = "DIACHI";
             this.dIACHIDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
             this.dIACHIDataGridViewTextBoxColumn.Name = "dIACHIDataGridViewTextBoxColumn";
+            this.dIACHIDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nGAYSINHDataGridViewTextBoxColumn
             // 
             this.nGAYSINHDataGridViewTextBoxColumn.DataPropertyName = "NGAYSINH";
             this.nGAYSINHDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
             this.nGAYSINHDataGridViewTextBoxColumn.Name = "nGAYSINHDataGridViewTextBoxColumn";
+            this.nGAYSINHDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // lUONGDataGridViewTextBoxColumn
             // 
             this.lUONGDataGridViewTextBoxColumn.DataPropertyName = "LUONG";
             this.lUONGDataGridViewTextBoxColumn.HeaderText = "Lương";
             this.lUONGDataGridViewTextBoxColumn.Name = "lUONGDataGridViewTextBoxColumn";
+            this.lUONGDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // mACNDataGridViewTextBoxColumn
             // 
             this.mACNDataGridViewTextBoxColumn.DataPropertyName = "MACN";
             this.mACNDataGridViewTextBoxColumn.HeaderText = "MACN";
             this.mACNDataGridViewTextBoxColumn.Name = "mACNDataGridViewTextBoxColumn";
+            this.mACNDataGridViewTextBoxColumn.ReadOnly = true;
             this.mACNDataGridViewTextBoxColumn.Visible = false;
             // 
             // tRANGTHAIDataGridViewCheckBoxColumn
@@ -144,6 +152,7 @@
             this.tRANGTHAIDataGridViewCheckBoxColumn.DataPropertyName = "TRANGTHAI";
             this.tRANGTHAIDataGridViewCheckBoxColumn.HeaderText = "TRANGTHAI";
             this.tRANGTHAIDataGridViewCheckBoxColumn.Name = "tRANGTHAIDataGridViewCheckBoxColumn";
+            this.tRANGTHAIDataGridViewCheckBoxColumn.ReadOnly = true;
             this.tRANGTHAIDataGridViewCheckBoxColumn.Visible = false;
             // 
             // nHANVIENBindingSource
@@ -174,6 +183,7 @@
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Ghi";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -273,6 +283,7 @@
             this.tbMaNV.Size = new System.Drawing.Size(107, 20);
             this.tbMaNV.TabIndex = 12;
             this.tbMaNV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbMaNV_KeyPress);
+            this.tbMaNV.Validating += new System.ComponentModel.CancelEventHandler(this.tbMaNV_Validating);
             // 
             // tbHo
             // 

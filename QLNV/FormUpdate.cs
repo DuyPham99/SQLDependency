@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -114,11 +115,6 @@ namespace QLNV
         {
             SqlConnection conn = null;
             SqlDataReader rdr = null;
-            // typically obtained from user
-            // input, but we take a short cut
-            string custId = "FURIB";
-
-            Console.WriteLine("\nCustomer Order History:\n");
 
             try
             {
@@ -158,16 +154,11 @@ namespace QLNV
             }
         }
 
-        public void Update( String HO, String TEN,
+        public void Update(String MANV, String HO, String TEN,
                                             String PHAI, String DIACHI, String NGAYSINH, String LUONG)
         {
             SqlConnection conn = null;
             SqlDataReader rdr = null;
-            // typically obtained from user
-            // input, but we take a short cut
-            string custId = "FURIB";
-
-            Console.WriteLine("\nCustomer Order History:\n");
 
             try
             {
@@ -187,7 +178,7 @@ namespace QLNV
 
                 // 3. add parameter to command, which
                 // will be passed to the stored procedure
-                cmd.Parameters.Add(new SqlParameter("@MANV", this.manv));
+                cmd.Parameters.Add(new SqlParameter("@MANV", MANV));
                 cmd.Parameters.Add(new SqlParameter("@HO", HO));
                 cmd.Parameters.Add(new SqlParameter("@TEN", TEN));
                 cmd.Parameters.Add(new SqlParameter("@PHAI", PHAI));
@@ -216,13 +207,14 @@ namespace QLNV
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Add(tbMaNV.Text, tbHo.Text, tbTen.Text, cbPhai.Text, tbDiaChi.Text, tbDate.Value.ToString("yyyyMMdd"), tbLuong.Text);
+            if (validate() == false) return;
+            Add(tbMaNV.Text, tbHo.Text, tbTen.Text, cbPhai.Text, tbDiaChi.Text, tbDate.Value.ToString("yyyyMMdd"), tbLuong.Text.Replace(".", ""));
         }
 
         String manv = "";
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            
+            if (tbMaNV.Text == string.Empty) MessageBox.Show("Nhập Mã NV!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             if ((MessageBox.Show("Bạn có muốn xóa?", "Warning!",
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                      MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
@@ -235,15 +227,16 @@ namespace QLNV
         {
             btnExit.PerformClick();
             if ( (e.RowIndex + 1) == (dataGridView1.Rows.Count) || e.RowIndex < 0) return;
-            this.manv = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
 
+            this.tbMaNV.ReadOnly = true;
+            this.manv = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             this.tbMaNV.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             this.tbHo.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             this.tbTen.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             this.cbPhai.SelectedIndex = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() == "NAM" ? 0 : 1;
             this.tbDiaChi.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
             this.tbDate.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
-            this.tbLuong.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##0.00}", double.Parse(dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()));      
+            this.tbLuong.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", double.Parse(dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()));      
         }
 
         private void tbLuong_TextChanged(object sender, EventArgs e)
@@ -255,7 +248,7 @@ namespace QLNV
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8;
             if(e.KeyChar == (char)13)
             {
-                tbLuong.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##0.00}", double.Parse(tbLuong.Text));
+                tbLuong.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", double.Parse(tbLuong.Text));
             }
         }
 
@@ -279,7 +272,9 @@ namespace QLNV
 
             func(Controls);
             cbPhai.SelectedIndex = -1;
+            tbDate.Value = DateTime.Now;
             reLoadData();
+            this.tbMaNV.ReadOnly = false;
         }
 
         // SQL Dependency
@@ -315,7 +310,7 @@ namespace QLNV
                 con.Open();
             }
 
-            SqlCommand cmd = new SqlCommand("SELECT  MANV, HO, TEN, PHAI, DIACHI, NGAYSINH, LUONG, MACN, TRANGTHAI FROM[dbo].[NHANVIEN]", con);
+            SqlCommand cmd = new SqlCommand("SELECT  MANV, HO, TEN, PHAI, DIACHI, NGAYSINH, LUONG, MACN, TRANGTHAI FROM[dbo].[NHANVIEN] WHERE TRANGTHAI = 'False'", con);
             cmd.Notification = null;
 
             SqlDependency de = new SqlDependency(cmd);
@@ -323,6 +318,63 @@ namespace QLNV
 
             dt.Load(cmd.ExecuteReader(CommandBehavior.CloseConnection));
             dataGridView1.DataSource = dt;
+        }
+
+        private void tbMaNV_Validating(object sender, CancelEventArgs e)
+        {
+        }
+
+        private bool validate()
+        {
+            if (tbMaNV.Text == string.Empty)
+            {
+                MessageBox.Show("Nhập Mã NV!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (tbHo.Text == string.Empty)
+            {
+                MessageBox.Show("Nhập Họ!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (tbTen.Text == string.Empty)
+            {
+                MessageBox.Show("Nhập Tên!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (tbDiaChi.Text == string.Empty)
+            {
+                MessageBox.Show("Nhập Địa Chỉ!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (cbPhai.SelectedIndex == -1)
+            {
+                MessageBox.Show("Nhập Phái!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (tbDate.Text == string.Empty)
+            {
+                MessageBox.Show("Nhập Ngày!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            if (tbLuong.Text == string.Empty)
+            {
+                MessageBox.Show("Nhập Lương!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (validate() == false) return;
+            Update(tbMaNV.Text, tbHo.Text, tbTen.Text, cbPhai.Text, tbDiaChi.Text, tbDate.Value.ToString("yyyyMMdd"), tbLuong.Text.Replace(".", ""));
         }
     }
 }

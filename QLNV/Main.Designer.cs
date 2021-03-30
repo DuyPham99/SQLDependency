@@ -32,19 +32,20 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.nHANVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.qLNVDataSet = new QLNV.QLNVDataSet();
+            this.rtBox = new System.Windows.Forms.RichTextBox();
+            this.lbNotification = new System.Windows.Forms.Label();
+            this.qLNVDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nHANVIENTableAdapter = new QLNV.QLNVDataSetTableAdapters.NHANVIENTableAdapter();
             this.mANVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tENDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pHAIDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pHAIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dIACHIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nGAYSINHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lUONGDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nHANVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.qLNVDataSet = new QLNV.QLNVDataSet();
-            this.qLNVDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rtBox = new System.Windows.Forms.RichTextBox();
-            this.nHANVIENTableAdapter = new QLNV.QLNVDataSetTableAdapters.NHANVIENTableAdapter();
-            this.lbNotification = new System.Windows.Forms.Label();
+            this.mACNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nHANVIENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLNVDataSet)).BeginInit();
@@ -79,66 +80,16 @@
             this.mANVDataGridViewTextBoxColumn,
             this.hODataGridViewTextBoxColumn,
             this.tENDataGridViewTextBoxColumn,
-            this.pHAIDataGridViewCheckBoxColumn,
+            this.pHAIDataGridViewTextBoxColumn,
             this.dIACHIDataGridViewTextBoxColumn,
             this.nGAYSINHDataGridViewTextBoxColumn,
-            this.lUONGDataGridViewTextBoxColumn});
+            this.lUONGDataGridViewTextBoxColumn,
+            this.mACNDataGridViewTextBoxColumn});
             this.dataGridView.DataSource = this.nHANVIENBindingSource;
             this.dataGridView.Location = new System.Drawing.Point(34, 150);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(626, 270);
             this.dataGridView.TabIndex = 2;
-            // 
-            // mANVDataGridViewTextBoxColumn
-            // 
-            this.mANVDataGridViewTextBoxColumn.DataPropertyName = "MANV";
-            this.mANVDataGridViewTextBoxColumn.HeaderText = "Mã NV";
-            this.mANVDataGridViewTextBoxColumn.Name = "mANVDataGridViewTextBoxColumn";
-            this.mANVDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hODataGridViewTextBoxColumn
-            // 
-            this.hODataGridViewTextBoxColumn.DataPropertyName = "HO";
-            this.hODataGridViewTextBoxColumn.HeaderText = "Họ";
-            this.hODataGridViewTextBoxColumn.Name = "hODataGridViewTextBoxColumn";
-            this.hODataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tENDataGridViewTextBoxColumn
-            // 
-            this.tENDataGridViewTextBoxColumn.DataPropertyName = "TEN";
-            this.tENDataGridViewTextBoxColumn.HeaderText = "Tên";
-            this.tENDataGridViewTextBoxColumn.Name = "tENDataGridViewTextBoxColumn";
-            this.tENDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pHAIDataGridViewCheckBoxColumn
-            // 
-            this.pHAIDataGridViewCheckBoxColumn.DataPropertyName = "PHAI";
-            this.pHAIDataGridViewCheckBoxColumn.HeaderText = "Phái";
-            this.pHAIDataGridViewCheckBoxColumn.Name = "pHAIDataGridViewCheckBoxColumn";
-            this.pHAIDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.pHAIDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.pHAIDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dIACHIDataGridViewTextBoxColumn
-            // 
-            this.dIACHIDataGridViewTextBoxColumn.DataPropertyName = "DIACHI";
-            this.dIACHIDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
-            this.dIACHIDataGridViewTextBoxColumn.Name = "dIACHIDataGridViewTextBoxColumn";
-            this.dIACHIDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nGAYSINHDataGridViewTextBoxColumn
-            // 
-            this.nGAYSINHDataGridViewTextBoxColumn.DataPropertyName = "NGAYSINH";
-            this.nGAYSINHDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
-            this.nGAYSINHDataGridViewTextBoxColumn.Name = "nGAYSINHDataGridViewTextBoxColumn";
-            this.nGAYSINHDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // lUONGDataGridViewTextBoxColumn
-            // 
-            this.lUONGDataGridViewTextBoxColumn.DataPropertyName = "LUONG";
-            this.lUONGDataGridViewTextBoxColumn.HeaderText = "Lương";
-            this.lUONGDataGridViewTextBoxColumn.Name = "lUONGDataGridViewTextBoxColumn";
-            this.lUONGDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nHANVIENBindingSource
             // 
@@ -150,11 +101,6 @@
             this.qLNVDataSet.DataSetName = "QLNVDataSet";
             this.qLNVDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // qLNVDataSetBindingSource
-            // 
-            this.qLNVDataSetBindingSource.DataSource = this.qLNVDataSet;
-            this.qLNVDataSetBindingSource.Position = 0;
-            // 
             // rtBox
             // 
             this.rtBox.Location = new System.Drawing.Point(445, 33);
@@ -163,10 +109,6 @@
             this.rtBox.TabIndex = 3;
             this.rtBox.Text = "";
             // 
-            // nHANVIENTableAdapter
-            // 
-            this.nHANVIENTableAdapter.ClearBeforeFill = true;
-            // 
             // lbNotification
             // 
             this.lbNotification.AutoSize = true;
@@ -174,6 +116,63 @@
             this.lbNotification.Name = "lbNotification";
             this.lbNotification.Size = new System.Drawing.Size(0, 13);
             this.lbNotification.TabIndex = 4;
+            // 
+            // qLNVDataSetBindingSource
+            // 
+            this.qLNVDataSetBindingSource.DataSource = this.qLNVDataSet;
+            this.qLNVDataSetBindingSource.Position = 0;
+            // 
+            // nHANVIENTableAdapter
+            // 
+            this.nHANVIENTableAdapter.ClearBeforeFill = true;
+            // 
+            // mANVDataGridViewTextBoxColumn
+            // 
+            this.mANVDataGridViewTextBoxColumn.DataPropertyName = "MANV";
+            this.mANVDataGridViewTextBoxColumn.HeaderText = "MANV";
+            this.mANVDataGridViewTextBoxColumn.Name = "mANVDataGridViewTextBoxColumn";
+            // 
+            // hODataGridViewTextBoxColumn
+            // 
+            this.hODataGridViewTextBoxColumn.DataPropertyName = "HO";
+            this.hODataGridViewTextBoxColumn.HeaderText = "HO";
+            this.hODataGridViewTextBoxColumn.Name = "hODataGridViewTextBoxColumn";
+            // 
+            // tENDataGridViewTextBoxColumn
+            // 
+            this.tENDataGridViewTextBoxColumn.DataPropertyName = "TEN";
+            this.tENDataGridViewTextBoxColumn.HeaderText = "TEN";
+            this.tENDataGridViewTextBoxColumn.Name = "tENDataGridViewTextBoxColumn";
+            // 
+            // pHAIDataGridViewTextBoxColumn
+            // 
+            this.pHAIDataGridViewTextBoxColumn.DataPropertyName = "PHAI";
+            this.pHAIDataGridViewTextBoxColumn.HeaderText = "PHAI";
+            this.pHAIDataGridViewTextBoxColumn.Name = "pHAIDataGridViewTextBoxColumn";
+            // 
+            // dIACHIDataGridViewTextBoxColumn
+            // 
+            this.dIACHIDataGridViewTextBoxColumn.DataPropertyName = "DIACHI";
+            this.dIACHIDataGridViewTextBoxColumn.HeaderText = "DIACHI";
+            this.dIACHIDataGridViewTextBoxColumn.Name = "dIACHIDataGridViewTextBoxColumn";
+            // 
+            // nGAYSINHDataGridViewTextBoxColumn
+            // 
+            this.nGAYSINHDataGridViewTextBoxColumn.DataPropertyName = "NGAYSINH";
+            this.nGAYSINHDataGridViewTextBoxColumn.HeaderText = "NGAYSINH";
+            this.nGAYSINHDataGridViewTextBoxColumn.Name = "nGAYSINHDataGridViewTextBoxColumn";
+            // 
+            // lUONGDataGridViewTextBoxColumn
+            // 
+            this.lUONGDataGridViewTextBoxColumn.DataPropertyName = "LUONG";
+            this.lUONGDataGridViewTextBoxColumn.HeaderText = "LUONG";
+            this.lUONGDataGridViewTextBoxColumn.Name = "lUONGDataGridViewTextBoxColumn";
+            // 
+            // mACNDataGridViewTextBoxColumn
+            // 
+            this.mACNDataGridViewTextBoxColumn.DataPropertyName = "MACN";
+            this.mACNDataGridViewTextBoxColumn.HeaderText = "MACN";
+            this.mACNDataGridViewTextBoxColumn.Name = "mACNDataGridViewTextBoxColumn";
             // 
             // Main
             // 
@@ -206,15 +205,16 @@
         private QLNVDataSet qLNVDataSet;
         private System.Windows.Forms.BindingSource nHANVIENBindingSource;
         private System.Windows.Forms.RichTextBox rtBox;
+        private QLNVDataSetTableAdapters.NHANVIENTableAdapter nHANVIENTableAdapter;
+        private System.Windows.Forms.Label lbNotification;
         private System.Windows.Forms.DataGridViewTextBoxColumn mANVDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hODataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tENDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pHAIDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pHAIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dIACHIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nGAYSINHDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lUONGDataGridViewTextBoxColumn;
-        private QLNVDataSetTableAdapters.NHANVIENTableAdapter nHANVIENTableAdapter;
-        private System.Windows.Forms.Label lbNotification;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mACNDataGridViewTextBoxColumn;
     }
 }
 
