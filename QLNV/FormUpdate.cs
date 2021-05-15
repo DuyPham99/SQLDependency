@@ -319,6 +319,7 @@ namespace QLNV
             dt.Load(cmd.ExecuteReader(CommandBehavior.CloseConnection));
             dataGridView1.DataSource = dt;
         }
+        ///////////////////
 
         private void tbMaNV_Validating(object sender, CancelEventArgs e)
         {
