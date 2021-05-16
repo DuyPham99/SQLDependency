@@ -56,6 +56,7 @@ namespace QLNV
         {
             SqlConnection conn = null;
             SqlDataReader rdr = null;
+            MANV = MANV.Trim();
             // typically obtained from user
             // input, but we take a short cut
             string custId = "FURIB";
@@ -115,7 +116,8 @@ namespace QLNV
         {
             SqlConnection conn = null;
             SqlDataReader rdr = null;
-
+            MANV = MANV.Trim();
+          
             try
             {
                 // create and open a connection object
@@ -141,6 +143,10 @@ namespace QLNV
                 this.btnExit.PerformClick();
                 MessageBox.Show("Thành công!");
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Errors[0].Message);
+            }
             finally
             {
                 if (conn != null)
@@ -159,7 +165,7 @@ namespace QLNV
         {
             SqlConnection conn = null;
             SqlDataReader rdr = null;
-
+            MANV = MANV.Trim();
             try
             {
                 // create and open a connection object
@@ -219,7 +225,7 @@ namespace QLNV
                      MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                      MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes))
             {
-                Delete(this.manv);
+                Delete(tbMaNV.Text);
             }
         }
 
